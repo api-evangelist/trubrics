@@ -1,0 +1,73 @@
+{
+  "info": {
+    "name": "Trubrics Ingestion API",
+    "description": "Public write-only HTTP ingestion API for the Trubrics product analytics platform for AI applications. Publish batches of up to 100 events to your project, authenticated with a project x-api-key.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "x-api-key", "type": "string" },
+      { "key": "value", "value": "{{trubricsApiKey}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://app.trubrics.com/api/ingestion", "type": "string" },
+    { "key": "trubricsApiKey", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Events",
+      "item": [
+        {
+          "name": "Publish events",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "accept", "value": "application/json" },
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-api-key", "value": "{{trubricsApiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/publish_events",
+              "host": ["{{baseUrl}}"],
+              "path": ["publish_events"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"user_id\": \"user_123\",\n    \"event\": \"Sign up\",\n    \"timestamp\": \"2026-06-20T12:00:00Z\",\n    \"properties\": { \"country\": \"US\" }\n  }\n]"
+            },
+            "description": "Publish a batch of up to 100 product analytics events. Each event has a user_id, event name, timestamp, and optional properties ($thread_id groups a conversation)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "LLM Events",
+      "item": [
+        {
+          "name": "Publish LLM events",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "accept", "value": "application/json" },
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-api-key", "value": "{{trubricsApiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/publish_llm_events",
+              "host": ["{{baseUrl}}"],
+              "path": ["publish_llm_events"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"user_id\": \"user_123\",\n    \"assistant_id\": \"gpt-4o\",\n    \"prompt\": \"What is product analytics for AI?\",\n    \"generation\": \"Product analytics for AI tracks user and AI events together.\",\n    \"latency\": 1.42,\n    \"timestamp\": \"2026-06-20T12:00:00Z\",\n    \"properties\": { \"$thread_id\": \"thread_abc\" }\n  }\n]"
+            },
+            "description": "Publish a batch of up to 100 LLM events. Each captures a prompt and generation; Trubrics expands it into paired prompt and generation analytics events."
+          }
+        }
+      ]
+    }
+  ]
+}

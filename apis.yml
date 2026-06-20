@@ -1,0 +1,113 @@
+aid: trubrics
+url: https://raw.githubusercontent.com/api-evangelist/trubrics/refs/heads/main/apis.yml
+name: Trubrics
+kind: company
+description: Trubrics is a product analytics platform for AI and LLM applications. It
+  captures user and AI events together - prompts, generations, feedback, sign ups and
+  conversions - through JavaScript and Python SDKs and a public HTTP ingestion API,
+  then surfaces them as product analytics for understanding adoption, quality, and cost
+  of AI features.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- AI
+- LLM
+- Product Analytics
+- Event Tracking
+- Feedback
+created: '2026-06-20'
+modified: '2026-06-20'
+specificationVersion: '0.19'
+apis:
+- aid: trubrics:trubrics-event-ingestion-api
+  name: Trubrics Event Ingestion API
+  tags:
+  - Events
+  - Tracking
+  - Ingestion
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.trubrics.com/api_reference/
+  baseURL: https://app.trubrics.com/api/ingestion
+  properties:
+  - url: https://docs.trubrics.com/new_to_trubrics/what_to_track/
+    type: Documentation
+  - url: https://docs.trubrics.com/api_reference/
+    type: APIReference
+  - url: openapi/trubrics-openapi.yml
+    type: OpenAPI
+  - url: collections/trubrics.postman_collection.json
+    type: PostmanCollection
+  - url: collections/trubrics.opencollection.json
+    type: OpenCollection
+  - url: https://github.com/trubrics
+    type: GitHub
+  description: Public write-only HTTP API for publishing batches of up to 100 product
+    analytics events (user_id, event, timestamp, properties) from any client or server,
+    authenticated with a project x-api-key.
+- aid: trubrics:trubrics-llm-event-ingestion-api
+  name: Trubrics LLM Event Ingestion API
+  tags:
+  - LLM
+  - Generations
+  - Ingestion
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.trubrics.com/api_reference/
+  baseURL: https://app.trubrics.com/api/ingestion
+  properties:
+  - url: https://docs.trubrics.com/api_reference/
+    type: Documentation
+  - url: https://docs.trubrics.com/api_reference/
+    type: APIReference
+  - url: openapi/trubrics-openapi.yml
+    type: OpenAPI
+  - url: collections/trubrics.postman_collection.json
+    type: PostmanCollection
+  - url: collections/trubrics.opencollection.json
+    type: OpenCollection
+  - url: https://github.com/trubrics
+    type: GitHub
+  description: Public write-only HTTP API for publishing batches of up to 100 LLM events
+    (prompt, generation, assistant_id, latency, $thread_id) which Trubrics expands into
+    paired prompt and generation analytics events.
+- aid: trubrics:trubrics-experiences-feedback-api
+  name: Trubrics Experiences and Feedback API
+  tags:
+  - Feedback
+  - Experiences
+  - Events
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.trubrics.com/api_reference/
+  baseURL: https://app.trubrics.com/api/ingestion
+  properties:
+  - url: https://docs.trubrics.com/new_to_trubrics/what_to_track/
+    type: Documentation
+  - url: https://docs.trubrics.com/api_reference/
+    type: APIReference
+  - url: openapi/trubrics-openapi.yml
+    type: OpenAPI
+  - url: collections/trubrics.postman_collection.json
+    type: PostmanCollection
+  - url: collections/trubrics.opencollection.json
+    type: OpenCollection
+  - url: https://github.com/trubrics
+    type: GitHub
+  description: User feedback (thumbs, comments, conversions) is captured as standard
+    Trubrics events through the same publish_events endpoint, letting AI experiences
+    report sentiment and conversion signals alongside prompts and generations.
+common:
+- type: GitHubOrganization
+  url: https://github.com/trubrics
+- type: LinkedIn
+  url: https://www.linkedin.com/company/trubrics
+- type: Website
+  url: https://www.trubrics.com
+- type: Documentation
+  url: https://docs.trubrics.com
+- type: Plans
+  url: plans/trubrics-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/trubrics-rate-limits.yml
+- type: FinOps
+  url: finops/trubrics-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

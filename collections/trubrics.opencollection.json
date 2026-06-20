@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trubrics Ingestion API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{trubricsApiKey}}",
+      "in": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Publish events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.trubrics.com/api/ingestion/publish_events",
+            "headers": [
+              { "name": "accept", "value": "application/json" },
+              { "name": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "type": "json",
+              "data": "[{\"user_id\":\"user_123\",\"event\":\"Sign up\",\"timestamp\":\"2026-06-20T12:00:00Z\",\"properties\":{\"country\":\"US\"}}]"
+            }
+          },
+          "docs": "Publish a batch of up to 100 product analytics events. Each event has a user_id, event name, timestamp, and optional properties ($thread_id groups a conversation)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "LLM Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Publish LLM events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.trubrics.com/api/ingestion/publish_llm_events",
+            "headers": [
+              { "name": "accept", "value": "application/json" },
+              { "name": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "type": "json",
+              "data": "[{\"user_id\":\"user_123\",\"assistant_id\":\"gpt-4o\",\"prompt\":\"What is product analytics for AI?\",\"generation\":\"Product analytics for AI tracks user and AI events together.\",\"latency\":1.42,\"timestamp\":\"2026-06-20T12:00:00Z\",\"properties\":{\"$thread_id\":\"thread_abc\"}}]"
+            }
+          },
+          "docs": "Publish a batch of up to 100 LLM events. Each captures a prompt and generation; Trubrics expands it into paired prompt and generation analytics events."
+        }
+      ]
+    }
+  ]
+}

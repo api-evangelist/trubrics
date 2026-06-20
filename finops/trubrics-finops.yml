@@ -1,0 +1,88 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Trubrics
+providerId: trubrics
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- LLM
+- Product Analytics
+- Event Tracking
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Trubrics spend. Trubrics bills on a usage-based model metered
+  by the number of events ingested, with a free starting allowance of 1,000
+  events and an Enterprise tier for larger volumes. The primary cost driver is
+  ingested event volume across user events, LLM events, and feedback events.
+  Per-event rates are not published in a reconciled form.
+notes: >-
+  Event-volume metering and the free allowance are documented; exact per-event
+  prices were not reconcilable at capture time. Verify against the Trubrics
+  site during reconciliation.
+sources:
+- https://www.trubrics.com
+- https://docs.trubrics.com
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Trubrics
+serviceCategory: Analytics
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Trubrics
+  ServiceCategory: Analytics
+  ProviderName: Trubrics
+  PublisherName: Trubrics
+  InvoiceIssuerName: Trubrics
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: ingested_events
+  description: Product analytics events published via publish_events, billed by count beyond the free allowance.
+  unit: events
+  aggregation: sum
+  dimensions:
+  - project
+  - event
+- name: ingested_llm_events
+  description: LLM events published via publish_llm_events (each expands into paired prompt and generation events).
+  unit: events
+  aggregation: sum
+  dimensions:
+  - project
+  - assistant_id
+- name: feedback_events
+  description: User feedback and conversion events captured as standard Trubrics events.
+  unit: events
+  aggregation: sum
+  dimensions:
+  - project
+  - event
+principles:
+- name: Visibility
+  description: Track ingested event volume per project and event type to understand the primary cost driver.
+- name: Allocation
+  description: Tag events with properties (e.g. assistant_id, $thread_id, team) and map projects to cost centers.
+- name: Optimization
+  description: Batch up to 100 events per request and tune SDK flush settings; track only events that drive analysis to avoid wasted volume.
+- name: Accountability
+  description: Assign owners per project/API key and review monthly ingested-event volume against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

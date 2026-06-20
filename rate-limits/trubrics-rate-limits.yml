@@ -1,0 +1,61 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Trubrics
+providerId: trubrics
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- LLM
+- Product Analytics
+- Event Tracking
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Trubrics ingestion API constrains throughput primarily through a
+  documented batch limit of up to 100 events per publish request on both the
+  publish_events and publish_llm_events endpoints. The SDKs queue events and
+  flush on a configurable interval (default 10 seconds) or queue size (default
+  20 events) to batch writes efficiently. Account-level requests-per-minute or
+  per-day quotas are not published and are not reconciled in this artifact.
+notes: >-
+  The 100-events-per-request batch cap and SDK flush defaults are documented;
+  any per-account request-rate or daily quota was not published at capture
+  time. Verify on reconciliation against the Trubrics API reference.
+sources:
+- https://docs.trubrics.com/api_reference/
+- https://docs.trubrics.com/track_events/sdks/javascript/
+responseCodes:
+  throttled: 429
+limits:
+- name: Events Per Request (Batch Cap)
+  scope: request
+  metric: events
+  limit: 100
+  notes: Maximum of 100 events per publish_events or publish_llm_events POST.
+- name: SDK Flush Interval
+  scope: client
+  metric: seconds
+  limit: 10
+  notes: Default queue flush interval in the SDKs; configurable on init.
+- name: SDK Flush Queue Size
+  scope: client
+  metric: events
+  limit: 20
+  notes: Default queue size that triggers a flush in the SDKs; configurable on init.
+- name: Requests Per Minute (RPM)
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: No published account-level RPM quota; not reconciled.
+policies:
+- name: Batching
+  description: Send up to 100 events per request and rely on SDK queuing/flushing to batch writes.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

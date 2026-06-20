@@ -1,0 +1,99 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Trubrics
+providerId: trubrics
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- LLM
+- Product Analytics
+- Event Tracking
+- Feedback
+- Plans
+description: >-
+  Trubrics uses a usage-based "get started for free, pay only for what you use"
+  model metered on the number of events ingested, with a free starting
+  allowance of 1,000 events and an Enterprise tier for larger volumes,
+  dedicated support, and negotiated terms. Specific per-event rates and Team /
+  paid tier thresholds are not published in a stable, reconciled form and are
+  marked unknown here.
+notes: >-
+  Event allowance and the free-to-paid usage model are described in the Trubrics
+  docs and site; exact per-event prices and named paid tiers were not
+  reconcilable at capture time. Verify current pricing on the Trubrics site
+  during reconciliation.
+sources:
+- https://www.trubrics.com
+- https://docs.trubrics.com
+plans:
+- id: trubrics-free
+  name: Free
+  type: free
+  description: >-
+    Free starting allowance to get going with Trubrics product analytics, with
+    1,000 events included at no cost.
+  entries:
+  - label: Included Events
+    name: free_events
+    type: usage
+    metric: events
+    limit: 1000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  elements:
+  - name: Event Ingestion
+  - name: LLM Event Ingestion
+  - name: Product Analytics
+- id: trubrics-usage
+  name: Pay as you go
+  type: usage
+  description: >-
+    Usage-based pricing metered on the number of events ingested beyond the
+    free allowance. Per-event rate not published in a reconciled form.
+  entries:
+  - label: Ingested Events
+    name: events
+    type: usage
+    metric: events
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: usage-based, see Trubrics site (not reconciled)
+    userMultiplied: false
+  elements:
+  - name: Event Ingestion
+  - name: LLM Event Ingestion
+  - name: Experiences and Feedback
+  - name: Product Analytics
+  - name: Integrations
+- id: trubrics-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Higher event volumes, dedicated support, security/compliance, and
+    negotiated terms. Contact Trubrics sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Dedicated Support
+  - name: Security and Compliance
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

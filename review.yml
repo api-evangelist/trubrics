@@ -1,0 +1,57 @@
+aid: trubrics
+name: Trubrics
+review:
+  question: Does Trubrics expose a documented public WebSocket or streaming API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Trubrics' public API is a write-only HTTP
+    ingestion surface (REST/HTTPS) for publishing batches of events. There is no
+    documented WebSocket, Server-Sent Events, or other streaming transport, so
+    nothing falls within AsyncAPI scope.
+findings:
+  summary: |
+    Trubrics does not publish a documented public WebSocket or streaming API.
+    The public API consists of two write-only HTTPS REST endpoints under
+    https://app.trubrics.com/api/ingestion - publish_events and
+    publish_llm_events - each accepting a JSON array batch of up to 100 events,
+    authenticated with an x-api-key header. The JavaScript and Python SDKs queue
+    events client-side and flush them to these REST endpoints; the queuing is a
+    client batching behavior, not a server streaming transport. All analysis and
+    querying happens inside the Trubrics application, not via a documented public
+    read/query API.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://app.trubrics.com/api/ingestion
+      documented: true
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events transport is documented.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in the Trubrics API reference or SDK docs as of the review date.
+  endpointsConfirmedRest:
+    - POST https://app.trubrics.com/api/ingestion/publish_events
+    - POST https://app.trubrics.com/api/ingestion/publish_llm_events
+sources:
+  - url: https://docs.trubrics.com/api_reference/
+    type: APIReference
+    note: Documents the two ingestion POST endpoints, x-api-key auth, and the 100-events-per-request batch cap.
+  - url: https://docs.trubrics.com/track_events/sdks/javascript/
+    type: Documentation
+    note: SDK queues events and flushes to the REST ingestion endpoints; default flush at 10s or 20 events.
+  - url: https://docs.trubrics.com/new_to_trubrics/what_to_track/
+    type: Documentation
+    note: Describes recommended events (Sign up, User prompt, AI generation, Converted) and $thread_id grouping.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or streaming protocol surface exists, so no AsyncAPI document
+    was authored. The apis.yml catalogs the documented REST ingestion surface
+    across event, LLM event, and feedback sub-APIs.

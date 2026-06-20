@@ -1,0 +1,201 @@
+openapi: 3.0.1
+info:
+  title: Trubrics Ingestion API
+  description: >-
+    Public, write-only HTTP ingestion API for the Trubrics product analytics
+    platform for AI applications. Publish batches of up to 100 product analytics
+    events or LLM events to your Trubrics project, authenticated with a project
+    x-api-key. The API contains public write endpoints only; analysis is done in
+    the Trubrics application.
+  termsOfService: https://www.trubrics.com/terms-of-use
+  contact:
+    name: Trubrics
+    url: https://www.trubrics.com
+  version: '1.0'
+servers:
+  - url: https://app.trubrics.com/api/ingestion
+    description: Trubrics ingestion API
+security:
+  - apiKeyAuth: []
+paths:
+  /publish_events:
+    post:
+      operationId: publishEvents
+      tags:
+        - Events
+      summary: Publish events
+      description: >-
+        Publish a batch of up to 100 product analytics events to your Trubrics
+        project. Each event has a user_id, an event name, a timestamp, and
+        optional custom properties (the reserved $thread_id property groups
+        events into a conversation thread).
+      security:
+        - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              maxItems: 100
+              items:
+                $ref: '#/components/schemas/Event'
+            example:
+              - user_id: user_123
+                event: Sign up
+                timestamp: '2026-06-20T12:00:00Z'
+                properties:
+                  country: US
+              - user_id: user_123
+                event: Converted
+                timestamp: '2026-06-20T12:05:00Z'
+                properties:
+                  plan: team
+      responses:
+        '200':
+          description: Events accepted for ingestion.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestionResponse'
+        '401':
+          description: Missing or invalid x-api-key.
+        '422':
+          description: Validation error in the event payload.
+  /publish_llm_events:
+    post:
+      operationId: publishLLMEvents
+      tags:
+        - LLM Events
+      summary: Publish LLM events
+      description: >-
+        Publish a batch of up to 100 LLM events to your Trubrics project. Each
+        LLM event captures a prompt and its generation; Trubrics expands it into
+        paired prompt and generation analytics events. The reserved $thread_id
+        property groups a multi-turn conversation.
+      security:
+        - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              maxItems: 100
+              items:
+                $ref: '#/components/schemas/LLMEvent'
+            example:
+              - user_id: user_123
+                assistant_id: gpt-4o
+                prompt: What is product analytics for AI?
+                generation: Product analytics for AI tracks user and AI events together.
+                latency: 1.42
+                timestamp: '2026-06-20T12:00:00Z'
+                properties:
+                  $thread_id: thread_abc
+      responses:
+        '200':
+          description: LLM events accepted for ingestion.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestionResponse'
+        '401':
+          description: Missing or invalid x-api-key.
+        '422':
+          description: Validation error in the LLM event payload.
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: >-
+        Project-scoped write-only API key, copied from the project settings page
+        in the Trubrics application.
+  schemas:
+    Event:
+      type: object
+      required:
+        - user_id
+        - event
+        - timestamp
+      properties:
+        user_id:
+          type: string
+          description: Distinct ID of the signed-in user.
+          example: user_123
+        event:
+          type: string
+          description: Name of the event being tracked.
+          example: User prompt
+        timestamp:
+          type: string
+          format: date-time
+          description: Event timestamp.
+          example: '2026-06-20T12:00:00Z'
+        properties:
+          type: object
+          additionalProperties: true
+          description: >-
+            Custom event/user properties used for filtering analysis. The
+            reserved $thread_id property groups events into a conversation.
+          example:
+            country: US
+            $thread_id: thread_abc
+    LLMEvent:
+      type: object
+      required:
+        - user_id
+        - prompt
+        - generation
+      properties:
+        user_id:
+          type: string
+          description: Distinct ID of the signed-in user.
+          example: user_123
+        prompt:
+          type: string
+          description: The user's message.
+          example: What is product analytics for AI?
+        generation:
+          type: string
+          description: The assistant's response.
+          example: Product analytics for AI tracks user and AI events together.
+        assistant_id:
+          type: string
+          description: Identifier for the AI assistant, typically the model name.
+          example: gpt-4o
+        timestamp:
+          type: string
+          format: date-time
+          description: Generation timestamp. Defaults to the current time.
+          example: '2026-06-20T12:00:00Z'
+        latency:
+          type: number
+          format: float
+          description: Seconds elapsed between the prompt and the generation.
+          example: 1.42
+        prompt_event_name:
+          type: string
+          description: Custom event label for the prompt event.
+          example: User prompt
+        generation_event_name:
+          type: string
+          description: Custom event label for the generation event.
+          example: AI generation
+        properties:
+          type: object
+          additionalProperties: true
+          description: >-
+            Custom properties. The reserved $thread_id property groups the
+            prompt and generation into a conversation thread.
+          example:
+            $thread_id: thread_abc
+    IngestionResponse:
+      type: object
+      description: Acknowledgement that the batch was accepted for ingestion.
+      properties:
+        status:
+          type: string
+          example: success
