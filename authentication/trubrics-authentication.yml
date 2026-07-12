@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/trubrics-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  description: Project-scoped write-only API key, copied from the project settings page in the
+    Trubrics application.
+  sources:
+  - openapi/trubrics-openapi.yml

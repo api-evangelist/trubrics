@@ -94,6 +94,10 @@ apis:
     Trubrics events through the same publish_events endpoint, letting AI experiences
     report sentiment and conversion signals alongside prompts and generations.
 common:
+- type: DomainSecurity
+  url: security/trubrics-domain-security.yml
+- type: Authentication
+  url: authentication/trubrics-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/trubrics
 - type: LinkedIn
