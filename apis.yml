@@ -94,6 +94,8 @@ apis:
     Trubrics events through the same publish_events endpoint, letting AI experiences
     report sentiment and conversion signals alongside prompts and generations.
 common:
+- type: AgenticAccess
+  url: agentic-access/trubrics-agentic-access.yml
 - type: DomainSecurity
   url: security/trubrics-domain-security.yml
 - type: Authentication
