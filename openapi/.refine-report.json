@@ -1,0 +1,16 @@
+{
+  "provider": "trubrics",
+  "sources": [
+    "trubrics-events-api-openapi.yml",
+    "trubrics-llm-events-api-openapi.yml"
+  ],
+  "outputs": [
+    "trubrics-events-api-openapi.yml",
+    "trubrics-llm-events-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
