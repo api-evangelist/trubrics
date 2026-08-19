@@ -1,0 +1,258 @@
+{
+  "item": [
+    {
+      "id": "0db96a3c-e88a-41f9-bdbe-85c3809c6ab6",
+      "name": "LLM Events",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ed89f4ef-88cf-4e18-b9d5-956ce6f05740",
+          "name": "Publish LLM events",
+          "request": {
+            "name": "Publish LLM events",
+            "description": {
+              "content": "Publish a batch of up to 100 LLM events to your Trubrics project. Each LLM event captures a prompt and its generation; Trubrics expands it into paired prompt and generation analytics events. The reserved $thread_id property groups a multi-turn conversation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "publish_llm_events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"user_id\": \"<string>\",\n    \"prompt\": \"<string>\",\n    \"generation\": \"<string>\",\n    \"assistant_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"latency\": \"<float>\",\n    \"prompt_event_name\": \"<string>\",\n    \"generation_event_name\": \"<string>\",\n    \"properties\": {\n      \"key_0\": 3539,\n      \"key_1\": 7344\n    }\n  },\n  {\n    \"user_id\": \"<string>\",\n    \"prompt\": \"<string>\",\n    \"generation\": \"<string>\",\n    \"assistant_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"latency\": \"<float>\",\n    \"prompt_event_name\": \"<string>\",\n    \"generation_event_name\": \"<string>\",\n    \"properties\": {\n      \"key_0\": 9875,\n      \"key_1\": 6919.350146002536,\n      \"key_2\": true\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fda69ed3-dfb5-47e1-aa60-b924a7420d48",
+              "name": "LLM events accepted for ingestion.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_llm_events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"user_id\": \"user_123\",\n    \"assistant_id\": \"gpt-4o\",\n    \"prompt\": \"What is product analytics for AI?\",\n    \"generation\": \"Product analytics for AI tracks user and AI events together.\",\n    \"latency\": 1.42,\n    \"timestamp\": \"2026-06-20T12:00:00Z\",\n    \"properties\": {\n      \"$thread_id\": \"thread_abc\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3758e283-314a-411c-911e-b2020631f75a",
+              "name": "Missing or invalid x-api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_llm_events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"user_id\": \"user_123\",\n    \"assistant_id\": \"gpt-4o\",\n    \"prompt\": \"What is product analytics for AI?\",\n    \"generation\": \"Product analytics for AI tracks user and AI events together.\",\n    \"latency\": 1.42,\n    \"timestamp\": \"2026-06-20T12:00:00Z\",\n    \"properties\": {\n      \"$thread_id\": \"thread_abc\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a357e95f-c3a0-41e8-a8f6-6fce7f0be161",
+              "name": "Validation error in the LLM event payload.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_llm_events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"user_id\": \"user_123\",\n    \"assistant_id\": \"gpt-4o\",\n    \"prompt\": \"What is product analytics for AI?\",\n    \"generation\": \"Product analytics for AI tracks user and AI events together.\",\n    \"latency\": 1.42,\n    \"timestamp\": \"2026-06-20T12:00:00Z\",\n    \"properties\": {\n      \"$thread_id\": \"thread_abc\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.trubrics.com/api/ingestion",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "354809cc-447e-4863-bdda-f2995bb853f8",
+    "name": "Trubrics Ingestion Events LLM Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public, write-only HTTP ingestion API for the Trubrics product analytics platform for AI applications. Publish batches of up to 100 product analytics events or LLM events to your Trubrics project, authenticated with a project x-api-key. The API contains public write endpoints only; analysis is done in the Trubrics application.\n\nContact Support:\n Name: Trubrics",
+      "type": "text/plain"
+    }
+  }
+}

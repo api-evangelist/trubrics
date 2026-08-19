@@ -1,0 +1,258 @@
+{
+  "item": [
+    {
+      "id": "05ac3bd4-5072-4734-84c4-816885672d6e",
+      "name": "Events",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "33070d23-c96c-47d3-9a1c-921a06549416",
+          "name": "Publish events",
+          "request": {
+            "name": "Publish events",
+            "description": {
+              "content": "Publish a batch of up to 100 product analytics events to your Trubrics project. Each event has a user_id, an event name, a timestamp, and optional custom properties (the reserved $thread_id property groups events into a conversation thread).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "publish_events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"user_id\": \"<string>\",\n    \"event\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"properties\": {\n      \"key_0\": 4778.740473640477,\n      \"key_1\": true\n    }\n  },\n  {\n    \"user_id\": \"<string>\",\n    \"event\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"properties\": {\n      \"key_0\": 3961.955464958006,\n      \"key_1\": \"string\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d09bca1e-1b4a-4402-97a1-cb81210df407",
+              "name": "Events accepted for ingestion.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"user_id\": \"user_123\",\n    \"event\": \"Sign up\",\n    \"timestamp\": \"2026-06-20T12:00:00Z\",\n    \"properties\": {\n      \"country\": \"US\"\n    }\n  },\n  {\n    \"user_id\": \"user_123\",\n    \"event\": \"Converted\",\n    \"timestamp\": \"2026-06-20T12:05:00Z\",\n    \"properties\": {\n      \"plan\": \"team\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0f90a84-3116-440d-aff7-b8fbb8d9b276",
+              "name": "Missing or invalid x-api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"user_id\": \"user_123\",\n    \"event\": \"Sign up\",\n    \"timestamp\": \"2026-06-20T12:00:00Z\",\n    \"properties\": {\n      \"country\": \"US\"\n    }\n  },\n  {\n    \"user_id\": \"user_123\",\n    \"event\": \"Converted\",\n    \"timestamp\": \"2026-06-20T12:05:00Z\",\n    \"properties\": {\n      \"plan\": \"team\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4d41b693-9153-4d58-a493-d0fdaba0d217",
+              "name": "Validation error in the event payload.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"user_id\": \"user_123\",\n    \"event\": \"Sign up\",\n    \"timestamp\": \"2026-06-20T12:00:00Z\",\n    \"properties\": {\n      \"country\": \"US\"\n    }\n  },\n  {\n    \"user_id\": \"user_123\",\n    \"event\": \"Converted\",\n    \"timestamp\": \"2026-06-20T12:05:00Z\",\n    \"properties\": {\n      \"plan\": \"team\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.trubrics.com/api/ingestion",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c3d8b98c-27eb-4f6b-b8c1-6b9af3c53568",
+    "name": "Trubrics Ingestion Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public, write-only HTTP ingestion API for the Trubrics product analytics platform for AI applications. Publish batches of up to 100 product analytics events or LLM events to your Trubrics project, authenticated with a project x-api-key. The API contains public write endpoints only; analysis is done in the Trubrics application.\n\nContact Support:\n Name: Trubrics",
+      "type": "text/plain"
+    }
+  }
+}

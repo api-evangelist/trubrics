@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trubrics Ingestion Events LLM Events API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "LLM Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Publish LLM events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.trubrics.com/api/ingestion/publish_llm_events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Publish a batch of up to 100 LLM events to your Trubrics project. Each LLM event captures a prompt and its generation; Trubrics expands it into paired prompt and generation analytics events. The reserved $thread_id property groups a multi-turn conversation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
