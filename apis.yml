@@ -22,6 +22,12 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/trubrics.png
 tags:
+- Artificial Intelligence
+- LLM
+- Product Analytics
+- Event Tracking
+- Feedback
+tags_raw:
 - AI
 - LLM
 - Product Analytics
@@ -37,6 +43,8 @@ apis:
   humanURL: https://docs.trubrics.com/api_reference/
   baseURL: https://app.trubrics.com/api/ingestion
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
