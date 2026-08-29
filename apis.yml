@@ -7,6 +7,18 @@ description: Trubrics is a product analytics platform for AI and LLM application
   conversions - through JavaScript and Python SDKs and a public HTTP ingestion API,
   then surfaces them as product analytics for understanding adoption, quality, and cost
   of AI features.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
