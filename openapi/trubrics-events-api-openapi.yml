@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Trubrics Ingestion Events API
   description: Public, write-only HTTP ingestion API for the Trubrics product analytics platform for AI applications. Publish batches of up to 100 product analytics events or LLM events to your Trubrics project, authenticated with a project x-api-key. The API contains public write endpoints only; analysis is done in the Trubrics application.
