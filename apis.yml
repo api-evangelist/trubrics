@@ -96,6 +96,9 @@ apis:
   - type: Documentation
     url: https://docs.trubrics.com/api_reference/
 common:
+- type: CapabilityMap
+  url: capabilities/trubrics-capability-edges.yml
+  name: Trubrics Business Capability Map
 - type: AgenticAccess
   url: agentic-access/trubrics-agentic-access.yml
 - type: DomainSecurity

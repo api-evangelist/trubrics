@@ -1,0 +1,35 @@
+slug: trubrics
+provider: Trubrics
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Events
+  spec_file: trubrics-events-api-openapi.yml
+  capability_id: BC-4280.10
+  capability_id_l1: BC-4280
+  capability_name: Product Telemetry Instrumentation
+  confidence: 0.85
+  evidence: Publish batches of up to 100 product analytics events or LLM events to your Trubrics project
+  reason: A write-only ingestion endpoint for product analytics events emitted by client/server runtimes
+    is exactly product telemetry instrumentation; the vendor states analysis happens elsewhere in the
+    application, so this surface is capture, not analytics.
+- tag: LLM Events
+  spec_file: trubrics-llm-events-api-openapi.yml
+  capability_id: BC-4280.10
+  capability_id_l1: BC-4280
+  capability_name: Product Telemetry Instrumentation
+  confidence: 0.8
+  evidence: 'POST /publish_llm_events  publishLLMEvents  Publish LLM events; schemas: LLMEvent'
+  reason: Same ingestion pattern specialised to LLM prompt/generation events against a defined event schema
+    — capture of product usage telemetry from runtimes. Slight ambiguity whether AI model lifecycle (BC-610.60)
+    applies, but the vendor frames it as product analytics ingestion.
