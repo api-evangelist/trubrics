@@ -57,13 +57,6 @@ paths:
           description: Validation error in the event payload.
 components:
   schemas:
-    IngestionResponse:
-      type: object
-      description: Acknowledgement that the batch was accepted for ingestion.
-      properties:
-        status:
-          type: string
-          example: success
     Event:
       type: object
       required:
@@ -91,6 +84,13 @@ components:
           example:
             country: US
             $thread_id: thread_abc
+    IngestionResponse:
+      type: object
+      description: Acknowledgement that the batch was accepted for ingestion.
+      properties:
+        status:
+          type: string
+          example: success
   securitySchemes:
     apiKeyAuth:
       type: apiKey
