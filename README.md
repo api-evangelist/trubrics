@@ -1,4 +1,4 @@
-# Trubrics (trubrics)
+# Trubrics
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,100 +66,117 @@
 
 Trubrics is a product analytics platform for AI and LLM applications. It captures user and AI events together - prompts, generations, feedback, sign ups and conversions - through JavaScript and Python SDKs and a public HTTP ingestion API, then surfaces them as product analytics for understanding adoption, quality, and cost of AI features.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/trubrics/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/trubrics/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · LLM · Product Analytics · Event Tracking · Feedback
 
-## Tags
+## Trubrics on APIs.io
 
-- AI
-- LLM
-- Product Analytics
-- Event Tracking
-- Feedback
+Everything profiled for Trubrics is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/trubrics/](https://apis.io/providers/trubrics/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (2)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Trubrics Events API](https://apis.io/apis/trubrics/trubrics-events-api/) — The Events API from Trubrics — 1 operation(s) for events.
+- [Trubrics LLM Events API](https://apis.io/apis/trubrics/trubrics-llm-events-api/) — The LLM Events API from Trubrics — 1 operation(s) for llm events.
 
-## APIs
+### Published properties
 
-### Trubrics Event Ingestion API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Public write-only HTTP API for publishing batches of up to 100 product analytics events (user_id, event, timestamp, properties) from any client or server, authenticated with a project x-api-key.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.trubrics.com/api_reference/](https://docs.trubrics.com/api_reference/)
-- **Base URL:** `https://app.trubrics.com/api/ingestion`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Trubrics Agentic Access](https://apis.io/agentic-access/trubrics/trubrics-agentic-access/)
 
-- Events
-- Tracking
-- Ingestion
+#### Collections (3)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.trubrics.com/new_to_trubrics/what_to_track/)
-- [API Reference](https://docs.trubrics.com/api_reference/)
-- [OpenAPI](openapi/trubrics-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/trubrics.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/trubrics.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub](https://github.com/trubrics)
+- [Trubrics Ingestion API](https://apis.io/collections/trubrics/open-trubrics/)
+- [Trubrics Ingestion Events API](https://apis.io/collections/trubrics/open-trubrics-events-api/)
+- [Trubrics Ingestion Events LLM Events API](https://apis.io/collections/trubrics/open-trubrics-llm-events-api/)
 
-### Trubrics LLM Event Ingestion API
+#### Security (2)
 
-Public write-only HTTP API for publishing batches of up to 100 LLM events (prompt, generation, assistant_id, latency, $thread_id) which Trubrics expands into paired prompt and generation analytics events.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.trubrics.com/api_reference/](https://docs.trubrics.com/api_reference/)
-- **Base URL:** `https://app.trubrics.com/api/ingestion`
+- [Trubrics Authentication](https://apis.io/security/trubrics/trubrics-authentication/)
+- [Trubrics Domain Security](https://apis.io/security/trubrics/trubrics-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- LLM
-- Generations
-- Ingestion
+Published plans, tiers and prices.
 
-#### Properties
+- [Trubrics Plans Pricing](https://apis.io/plans/trubrics/trubrics-plans-pricing/)
 
-- [Documentation](https://docs.trubrics.com/api_reference/)
-- [API Reference](https://docs.trubrics.com/api_reference/)
-- [OpenAPI](openapi/trubrics-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/trubrics.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/trubrics.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub](https://github.com/trubrics)
+#### Rate limits (1)
 
-### Trubrics Experiences and Feedback API
+Published request limits.
 
-User feedback (thumbs, comments, conversions) is captured as standard Trubrics events through the same publish_events endpoint, letting AI experiences report sentiment and conversion signals alongside prompts and generations.
+- [Trubrics Rate Limits](https://apis.io/rate-limits/trubrics/trubrics-rate-limits/)
 
-- **Human URL:** [https://docs.trubrics.com/api_reference/](https://docs.trubrics.com/api_reference/)
-- **Base URL:** `https://app.trubrics.com/api/ingestion`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Feedback
-- Experiences
-- Events
+- [Trubrics Finops](https://apis.io/finops/trubrics/trubrics-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.trubrics.com/new_to_trubrics/what_to_track/)
-- [API Reference](https://docs.trubrics.com/api_reference/)
-- [OpenAPI](openapi/trubrics-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/trubrics.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/trubrics.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub](https://github.com/trubrics)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-## Common Properties
-
-- [GitHub Organization](https://github.com/trubrics)
-- [LinkedIn](https://www.linkedin.com/company/trubrics)
 - [Website](https://www.trubrics.com)
 - [Documentation](https://docs.trubrics.com)
-- [Plans](plans/trubrics-plans-pricing.yml)
-- [Rate Limits](rate-limits/trubrics-rate-limits.yml)
-- [Fin Ops](finops/trubrics-finops.yml)
+- [GitHub](https://github.com/trubrics)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 27.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 52.7 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 29.8 |
+| Access clarity | 7.9 |
+
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.9** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/trubrics/](https://apis.io/providers/trubrics/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Trubrics: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/trubrics/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
